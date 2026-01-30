@@ -98,4 +98,3 @@ document.addEventListener("DOMContentLoaded", ()=>{
   applyTeacher();
   markActiveTab();
 });
-
