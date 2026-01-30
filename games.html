@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Games • WordMasters Practice</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>WordMasters Practice <small>Games</small></div>
+      </div>
+
+      <div class="nav">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="week1.html">Week 1</a>
+        <a class="pill" href="week2.html">Week 2</a>
+        <a class="pill" href="mixed_review.html">Mixed Review</a>
+        <a class="pill" href="vocab_dropdown_story.html">Story</a>
+        <a class="pill" href="games.html">Games</a>
+        <a class="pill" href="about.html">About</a>
+      </div>
+
+      <div class="right-tools">
+        <span id="teacherBadge" class="teacherBadge">TEACHER</span>
+        <div class="toggle" title="Check = Teacher Mode ON">
+          <span id="teacherModeLabel">Student Mode</span>
+          <label class="switch">
+            <input id="teacherModeToggle" type="checkbox" />
+            <span class="knob"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Games</h1>
+      <p>
+        Quick drills to sharpen speed + accuracy. Turn on <strong>Teacher Mode</strong> to show the correct answer
+        explanations after each question.
+      </p>
+    </div>
+
+    <div class="sectionTitle">Speed Quiz (10 questions)</div>
+
+    <div class="panel" id="quizPanel">
+      <div class="row" style="justify-content:space-between; align-items:flex-start;">
+        <div>
+          <div class="muted small" id="progress"></div>
+          <h2 style="margin:6px 0 6px" id="questionText"></h2>
+          <div class="muted small" id="scoreText"></div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row" id="choices" style="gap:10px;"></div>
+
+      <div class="hr"></div>
+
+      <div class="row" style="justify-content:space-between;">
+        <div class="muted" id="feedback"></div>
+        <button class="btn primary" type="button" id="nextBtn">Next →</button>
+      </div>
+
+      <div class="notice teacher" data-teacher-only style="margin-top:12px;">
+        <div>
+          <strong>Teacher Mode Tip</strong>
+          Use this as a warm-up. After students answer, ask them to explain why the correct choice fits best.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Try once in Student Mode, then review in Teacher Mode.</div>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    // Simple quiz (no extra files needed)
+    const quiz = [
+      { q: "Best synonym for “meticulous”:", c: ["careless", "thorough", "reckless", "hurried"], a: 1,
+        e: "Meticulous means extremely careful and precise. 'Thorough' is closest." },
+      { q: "“The plan was pragmatic.” Pragmatic means:", c: ["idealistic", "practical", "confusing", "dramatic"], a: 1,
+        e: "Pragmatic = practical and realistic (focused on what works)." },
+      { q: "Complete: “The rumor was ______; no one could prove it.”", c: ["verified", "sketchy", "candid", "obvious"], a: 1,
+        e: "Sketchy = suspicious / not reliable / not clearly supported." },
+      { q: "Best antonym for “benevolent”:", c: ["kind", "generous", "malicious", "helpful"], a: 2,
+        e: "Benevolent = kind; malicious = intending harm (opposite)." },
+      { q: "Placate means:", c: ["calm down", "speed up", "interrupt", "ignore"], a: 0,
+        e: "Placate = soothe / calm someone who is upset." },
+      { q: "Opaque (in “His explanation was opaque”) means:", c: ["clear", "hard to understand", "funny", "brief"], a: 1,
+        e: "Opaque can mean not transparent; figuratively it means unclear/hard to understand." },
+      { q: "Ambiguous means:", c: ["having two meanings", "very old", "very loud", "very small"], a: 0,
+        e: "Ambiguous = can be interpreted in more than one way." },
+      { q: "Resilient means:", c: ["breakable", "sleepy", "able to recover quickly", "unaware"], a: 2,
+        e: "Resilient = able to bounce back after difficulty." },
+      { q: "Candor means:", c: ["honesty", "anger", "fear", "speed"], a: 0,
+        e: "Candor = frank honesty." },
+      { q: "Inadvertent means:", c: ["intentional", "unplanned", "loud", "ancient"], a: 1,
+        e: "Inadvertent = accidental / not intended." }
+    ];
+
+    let i = 0, score = 0, answered = false;
+
+    const progress = document.getElementById("progress");
+    const questionText = document.getElementById("questionText");
+    const scoreText = document.getElementById("scoreText");
+    const choices = document.getElementById("choices");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function render(){
+      answered = false;
+      feedback.textContent = "";
+      choices.innerHTML = "";
+      progress.textContent = `Question ${i+1} of ${quiz.length}`;
+      scoreText.textContent = `Score: ${score}`;
+      questionText.textContent = quiz[i].q;
+
+      quiz[i].c.forEach((txt, idx) => {
+        const b = document.createElement("button");
+        b.className = "btn";
+        b.type = "button";
+        b.textContent = txt;
+        b.onclick = () => choose(idx, b);
+        choices.appendChild(b);
+      });
+
+      nextBtn.textContent = (i === quiz.length - 1) ? "Finish" : "Next →";
+    }
+
+    function choose(idx, btn){
+      if(answered) return;
+      answered = true;
+
+      const correct = (idx === quiz[i].a);
+
+      if(correct){
+        score++;
+        btn.classList.add("good");
+        feedback.textContent = "✅ Correct!";
+      } else {
+        btn.classList.add("bad");
+        feedback.textContent = "❌ Not quite.";
+      }
+
+      // Teacher-only explanation
+      if (localStorage.getItem("wm_teacher_mode") === "1") {
+        feedback.innerHTML = `<div class="notice teacher"><div><strong>Answer</strong>${quiz[i].c[quiz[i].a]}<div class="small muted" style="margin-top:6px">${quiz[i].e}</div></div></div>`;
+      }
+      scoreText.textContent = `Score: ${score}`;
+    }
+
+    nextBtn.onclick = () => {
+      if(i < quiz.length - 1){
+        i++;
+        render();
+      } else {
+        document.getElementById("quizPanel").innerHTML =
+          `<div class="panel">
+            <h2 style="margin:0 0 8px">Finished!</h2>
+            <p class="muted" style="margin:0 0 14px">You scored <strong>${score}</strong> out of <strong>${quiz.length}</strong>.</p>
+            <div class="row">
+              <a class="btn primary" href="games.html">Play Again</a>
+              <a class="btn" href="index.html">Home</a>
+            </div>
+          </div>`;
+      }
+    };
+
+    render();
+  </script>
+</body>
+</html>
