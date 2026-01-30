@@ -26,7 +26,9 @@
 
       <div class="right-tools">
         <span id="teacherBadge" class="teacherBadge">TEACHER</span>
-        <div class="toggle" title="Check = Teacher Mode ON">
+
+        <!-- Hidden unless unlocked by typing: toggle -->
+        <div class="toggle">
           <span id="teacherModeLabel">Student Mode</span>
           <label class="switch">
             <input id="teacherModeToggle" type="checkbox" />
@@ -41,8 +43,8 @@
     <div class="hero">
       <h1>Games</h1>
       <p>
-        Quick drills to sharpen speed + accuracy. Turn on <strong>Teacher Mode</strong> to show the correct answer
-        explanations after each question.
+        Fast drills using your word list. Teacher Mode shows the explanation after an answer.
+        (Secret: double-click the logo.)
       </p>
     </div>
 
@@ -58,51 +60,50 @@
       </div>
 
       <div class="hr"></div>
-
       <div class="row" id="choices" style="gap:10px;"></div>
-
       <div class="hr"></div>
 
       <div class="row" style="justify-content:space-between;">
         <div class="muted" id="feedback"></div>
         <button class="btn primary" type="button" id="nextBtn">Next →</button>
       </div>
-
-      <div class="notice teacher" data-teacher-only style="margin-top:12px;">
-        <div>
-          <strong>Teacher Mode Tip</strong>
-          Use this as a warm-up. After students answer, ask them to explain why the correct choice fits best.
-        </div>
-      </div>
     </div>
 
-    <div class="footer">Try once in Student Mode, then review in Teacher Mode.</div>
+    <div class="footer">Word list: stamina, sketchy, mettle, tyrant, shirk, domineer, mundane, disposition, bicker, etiquette, faux pas, amicable, enact, establish, rigorous, peaked, snicker, sneer, wrangle, lax, haggard, threshold, derelict, refuse, evade.</div>
   </div>
 
   <script src="assets/app.js"></script>
   <script>
-    // Simple quiz (no extra files needed)
     const quiz = [
-      { q: "Best synonym for “meticulous”:", c: ["careless", "thorough", "reckless", "hurried"], a: 1,
-        e: "Meticulous means extremely careful and precise. 'Thorough' is closest." },
-      { q: "“The plan was pragmatic.” Pragmatic means:", c: ["idealistic", "practical", "confusing", "dramatic"], a: 1,
-        e: "Pragmatic = practical and realistic (focused on what works)." },
-      { q: "Complete: “The rumor was ______; no one could prove it.”", c: ["verified", "sketchy", "candid", "obvious"], a: 1,
-        e: "Sketchy = suspicious / not reliable / not clearly supported." },
-      { q: "Best antonym for “benevolent”:", c: ["kind", "generous", "malicious", "helpful"], a: 2,
-        e: "Benevolent = kind; malicious = intending harm (opposite)." },
-      { q: "Placate means:", c: ["calm down", "speed up", "interrupt", "ignore"], a: 0,
-        e: "Placate = soothe / calm someone who is upset." },
-      { q: "Opaque (in “His explanation was opaque”) means:", c: ["clear", "hard to understand", "funny", "brief"], a: 1,
-        e: "Opaque can mean not transparent; figuratively it means unclear/hard to understand." },
-      { q: "Ambiguous means:", c: ["having two meanings", "very old", "very loud", "very small"], a: 0,
-        e: "Ambiguous = can be interpreted in more than one way." },
-      { q: "Resilient means:", c: ["breakable", "sleepy", "able to recover quickly", "unaware"], a: 2,
-        e: "Resilient = able to bounce back after difficulty." },
-      { q: "Candor means:", c: ["honesty", "anger", "fear", "speed"], a: 0,
-        e: "Candor = frank honesty." },
-      { q: "Inadvertent means:", c: ["intentional", "unplanned", "loud", "ancient"], a: 1,
-        e: "Inadvertent = accidental / not intended." }
+      { q:"Which word means “endurance over time”?", c:["stamina","refuse","threshold","snicker"], a:0,
+        e:"Stamina is the ability to keep going without getting tired." },
+
+      { q:"Which word best means “suspicious or not trustworthy”?", c:["amicable","sketchy","rigorous","mundane"], a:1,
+        e:"Sketchy means suspicious or unreliable." },
+
+      { q:"Which word means “courage/strength of character under pressure”?", c:["mettle","etiquette","disposition","refuse"], a:0,
+        e:"Mettle means courage and toughness." },
+
+      { q:"A ______ is someone who rules cruelly and unfairly.", c:["tyrant","derelict","threshold","wrangle"], a:0,
+        e:"A tyrant is an oppressive ruler." },
+
+      { q:"Which word means “avoid duties on purpose”?", c:["shirk","enact","establish","peaked"], a:0,
+        e:"Shirk means to avoid responsibilities." },
+
+      { q:"Which word means “to boss people around”?", c:["domineer","bicker","snicker","evade"], a:0,
+        e:"Domineer means to control or push others around." },
+
+      { q:"If something is ordinary and boring, it is ______.", c:["lax","mundane","haggard","derelict"], a:1,
+        e:"Mundane means ordinary, not exciting." },
+
+      { q:"Which word means “polite rules for behavior”?", c:["etiquette","refuse","wrangle","sneer"], a:0,
+        e:"Etiquette is proper manners/behavior rules." },
+
+      { q:"A social mistake (like saying the wrong thing at dinner) is a ______.", c:["faux pas","threshold","mettle","rigorous"], a:0,
+        e:"Faux pas = embarrassing social mistake." },
+
+      { q:"Which word means “argue about small things”?", c:["bicker","establish","enact","evade"], a:0,
+        e:"Bicker means to argue, usually about minor issues." }
     ];
 
     let i = 0, score = 0, answered = false;
@@ -113,6 +114,8 @@
     const choices = document.getElementById("choices");
     const feedback = document.getElementById("feedback");
     const nextBtn = document.getElementById("nextBtn");
+
+    function teacherOn(){ return localStorage.getItem("wm_teacher_mode") === "1"; }
 
     function render(){
       answered = false;
@@ -139,7 +142,6 @@
       answered = true;
 
       const correct = (idx === quiz[i].a);
-
       if(correct){
         score++;
         btn.classList.add("good");
@@ -149,10 +151,16 @@
         feedback.textContent = "❌ Not quite.";
       }
 
-      // Teacher-only explanation
-      if (localStorage.getItem("wm_teacher_mode") === "1") {
-        feedback.innerHTML = `<div class="notice teacher"><div><strong>Answer</strong>${quiz[i].c[quiz[i].a]}<div class="small muted" style="margin-top:6px">${quiz[i].e}</div></div></div>`;
+      if(teacherOn()){
+        feedback.innerHTML =
+          `<div class="notice teacher">
+            <div>
+              <strong>Answer:</strong> ${quiz[i].c[quiz[i].a]}
+              <div class="small muted" style="margin-top:6px">${quiz[i].e}</div>
+            </div>
+          </div>`;
       }
+
       scoreText.textContent = `Score: ${score}`;
     }
 
