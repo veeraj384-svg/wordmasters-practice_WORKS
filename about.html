@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About • WordMasters Practice</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><div class="logo"></div><div>WordMasters Practice <small>About</small></div></div>
+
+      <div class="nav">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="week1.html">Week 1</a>
+        <a class="pill" href="week2.html">Week 2</a>
+        <a class="pill" href="mixed_review.html">Mixed Review</a>
+        <a class="pill" href="vocab_dropdown_story.html">Story</a>
+        <a class="pill" href="games.html">Games</a>
+        <a class="pill" href="about.html">About</a>
+      </div>
+
+      <div class="right-tools">
+        <span id="teacherBadge" class="teacherBadge">TEACHER</span>
+        <div class="toggle">
+          <span id="teacherModeLabel">Student Mode</span>
+          <label class="switch">
+            <input id="teacherModeToggle" type="checkbox" />
+            <span class="knob"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>About this site</h1>
+      <p>
+        This site has two views:
+        <strong>Student Mode</strong> and <strong>Teacher Mode</strong>.
+        The checkbox turns Teacher Mode ON/OFF.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-inner">
+          <h2>Student Mode (default)</h2>
+          <p>Students practice normally. No answer keys or teacher tools appear.</p>
+          <div class="actions">
+            <a class="btn" href="index.html">Back Home</a>
+            <a class="btn good" href="games.html">Games</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <h2>Teacher Mode (checkbox ON)</h2>
+          <p>Teacher-only sections appear: answer explanations and key-fill buttons.</p>
+          <div class="notice teacher" data-teacher-only>
+            <div><strong>Teacher Mode is ON right now.</strong> You should see this box only in Teacher Mode.</div>
+          </div>
+          <div class="notice" data-student-only>
+            <div><strong>Teacher Mode is OFF.</strong> Turn it ON to see teacher-only content.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:14px;">
+      <h2 style="margin:0 0 10px">Important note</h2>
+      <p class="muted" style="margin:0">
+        This Teacher Mode is a view toggle on the device (it remembers your setting). It is not a password system.
+        If you want a real locked teacher area later, we can add it carefully.
+      </p>
+    </div>
+
+    <div class="footer">Made for practice, speed, and confidence.</div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
