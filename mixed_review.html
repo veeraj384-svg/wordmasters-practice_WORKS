@@ -37,31 +37,42 @@
   <div class="container">
     <div class="hero">
       <h1>Mixed Review</h1>
-      <p>Mix of Week 1 + Week 2 words in tricky contexts. Teacher Mode shows the key after checking.</p>
+      <p>Mix of meanings and context. Dropdowns start with none.</p>
     </div>
 
     <div class="panel">
       <h2 style="margin:0 0 10px">Questions</h2>
       <div id="qwrap"></div>
+
       <div class="hr"></div>
       <button class="btn primary" onclick="check()">Check Answers</button>
       <span class="muted" id="result" style="margin-left:10px"></span>
     </div>
 
-    <div class="footer">Use this the night before a WordMasters meet.</div>
+    <div class="footer">Secret Teacher Mode: double-click the logo OR type “teach”.</div>
   </div>
 
   <script src="assets/app.js"></script>
   <script>
     const qs = [
-      {q:"Crossing the ______ of the house, she stepped inside.", choices:["threshold","tyrant","refuse","mettle"], a:0, e:"Threshold = doorway/entrance."},
-      {q:"He tried to ______ the difficult question by changing the subject.", choices:["evade","enact","establish","snicker"], a:0, e:"Evade = avoid/escape."},
-      {q:"They made an effort to stay ______ even after disagreeing.", choices:["amicable","sketchy","haggard","lax"], a:0, e:"Amicable = friendly/peaceful."},
-      {q:"The abandoned building looked ______ from the road.", choices:["derelict","rigorous","mundane","peaked"], a:0, e:"Derelict = abandoned/in poor condition."},
-      {q:"The teacher reminded everyone about proper ______ at the dinner.", choices:["etiquette","refuse","wrangle","mettle"], a:0, e:"Etiquette = polite behavior rules."}
+      {q:"Crossing the ______, she stepped into the house.", choices:["threshold","tyrant","refuse","mettle"], a:"threshold",
+       e:"Threshold = the entrance/doorway."},
+
+      {q:"The building was ______, with broken windows and no one living there.", choices:["derelict","amicable","rigorous","mundane"], a:"derelict",
+       e:"Derelict = abandoned and in bad condition."},
+
+      {q:"The group tried to stay ______ and end the argument peacefully.", choices:["amicable","sketchy","haggard","lax"], a:"amicable",
+       e:"Amicable = friendly and peaceful."},
+
+      {q:"At the end of the meal, they threw the ______ into the trash.", choices:["refuse","mettle","threshold","etiquette"], a:"refuse",
+       e:"Refuse = garbage/trash."},
+
+      {q:"They had to ______ about who would carry the heavy boxes.", choices:["wrangle","snicker","enact","peaked"], a:"wrangle",
+       e:"Wrangle = argue or wrestle with a problem."}
     ];
 
     const qwrap = document.getElementById("qwrap");
+    const teacherOn = () => localStorage.getItem("wm_teacher_mode") === "1";
 
     function build(){
       qwrap.innerHTML = "";
@@ -69,11 +80,15 @@
         const div = document.createElement("div");
         div.className = "panel";
         div.style.marginBottom = "12px";
+
+        const shuffled = [...x.choices].sort(()=> Math.random()-0.5);
+
         div.innerHTML = `
           <div><strong>${idx+1}.</strong> ${x.q}</div>
           <div style="margin-top:10px">
             <select id="sel${idx}">
-              ${x.choices.map(c=>`<option value="${c}">${c}</option>`).join("")}
+              <option value="" selected>Choose…</option>
+              ${shuffled.map(c=>`<option value="${c}">${c}</option>`).join("")}
             </select>
           </div>
           <div class="small muted" id="exp${idx}" style="margin-top:10px; display:none;"></div>
@@ -84,16 +99,21 @@
 
     function check(){
       let correct = 0;
-      const teacherOn = localStorage.getItem("wm_teacher_mode") === "1";
-
       qs.forEach((x, idx)=>{
         const val = document.getElementById("sel"+idx).value;
         const exp = document.getElementById("exp"+idx);
-        if(val === x.choices[x.a]) correct++;
 
-        if(teacherOn){
+        if(val === x.a) correct++;
+
+        if(teacherOn()){
           exp.style.display = "block";
-          exp.innerHTML = `<div class="notice teacher"><div><strong>Answer:</strong> ${x.choices[x.a]}<div class="small muted" style="margin-top:6px">${x.e}</div></div></div>`;
+          exp.innerHTML = `
+            <div class="notice teacher">
+              <div>
+                <strong>Answer:</strong> ${x.a}
+                <div class="small muted" style="margin-top:6px">${x.e}</div>
+              </div>
+            </div>`;
         } else {
           exp.style.display = "none";
           exp.innerHTML = "";
@@ -107,3 +127,4 @@
   </script>
 </body>
 </html>
+
