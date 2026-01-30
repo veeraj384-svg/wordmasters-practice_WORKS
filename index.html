@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WordMasters Practice</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          WordMasters Practice
+          <small>Vocabulary • Context • Games • Weekly Sets</small>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="week1.html">Week 1</a>
+        <a class="pill" href="week2.html">Week 2</a>
+        <a class="pill" href="mixed_review.html">Mixed Review</a>
+        <a class="pill" href="vocab_dropdown_story.html">Story</a>
+        <a class="pill" href="games.html">Games</a>
+        <a class="pill" href="about.html">About</a>
+      </div>
+
+      <div class="right-tools">
+        <span id="teacherBadge" class="teacherBadge">TEACHER</span>
+        <div class="toggle" title="Check = Teacher Mode ON">
+          <span id="teacherModeLabel">Student Mode</span>
+          <label class="switch">
+            <input id="teacherModeToggle" type="checkbox" />
+            <span class="knob"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Practice smarter. Learn faster.</h1>
+      <p>
+        This site is for WordMasters-style vocabulary practice: weekly sets, mixed review, a dropdown story,
+        and games. Turn on <strong>Teacher Mode</strong> to reveal keys and teacher-only tools.
+      </p>
+    </div>
+
+    <div class="sectionTitle">Student Practice (Main)</div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-inner">
+          <h2>Weekly Sets</h2>
+          <p>Clean practice with tricky choices (like a competition).</p>
+          <div class="actions">
+            <a class="btn primary" href="week1.html">Open Week 1</a>
+            <a class="btn primary" href="week2.html">Open Week 2</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <h2>Games</h2>
+          <p>Fast quiz-style drills to sharpen vocabulary under time pressure.</p>
+          <div class="actions">
+            <a class="btn good" href="games.html">Go to Games</a>
+            <a class="btn" href="mixed_review.html">Mixed Review</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <h2>Dropdown Story Challenge</h2>
+          <p>Fill in a story using the best vocabulary words in context.</p>
+          <div class="actions">
+            <a class="btn warn" href="vocab_dropdown_story.html">Open Story</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <h2>Teacher Mode (Changes the site)</h2>
+          <p data-student-only>Turn the checkbox ON to see answer keys and teacher-only tools.</p>
+          <div class="notice teacher" data-teacher-only>
+            <div>
+              <strong>Teacher Mode is ON</strong>
+              Now you will see teacher-only sections across pages.
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn" href="about.html">What Teacher Mode does</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Teacher Mode is a view toggle (not a login). Checked = ON. Unchecked = OFF.</div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
