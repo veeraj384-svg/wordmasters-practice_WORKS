@@ -1,6 +1,9 @@
 /* =========================================================
    WordMasters Practice — Professional Dark / Glass Theme
-   Purplish + Green vibe, tight nav spacing, pro typography
+   - Tight nav spacing
+   - Purplish + Green vibe
+   - Professional typography & spacing
+   - Supports #qwrap question shells
    ========================================================= */
 
 *,
@@ -9,7 +12,7 @@
 
 html, body { height: 100%; }
 
-body {
+body{
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   color: #eaf0ff;
@@ -37,6 +40,7 @@ button, input, select, textarea { font: inherit; }
 
   --purple: #7c5cff;
   --green: #4cd964;
+  --red: #ff4d6d;
 
   --r-lg: 22px;
   --r-md: 16px;
@@ -51,7 +55,8 @@ button, input, select, textarea { font: inherit; }
   --ring: 0 0 0 4px rgba(124,92,255,0.26);
 }
 
-.bg-glow {
+/* Background glow */
+.bg-glow{
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -62,12 +67,14 @@ button, input, select, textarea { font: inherit; }
   filter: saturate(118%);
 }
 
-.container {
+/* Layout container */
+.container{
   width: min(var(--max), calc(100% - (var(--pad) * 2)));
   margin: 0 auto;
 }
 
-.topbar {
+/* ---------- Topbar / Nav (supports your existing class names) ---------- */
+.topbar{
   position: sticky;
   top: 0;
   z-index: 50;
@@ -76,7 +83,10 @@ button, input, select, textarea { font: inherit; }
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.nav {
+/* your existing "topbar-inner" */
+.topbar-inner{
+  width: min(var(--max), calc(100% - (var(--pad) * 2)));
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,14 +94,26 @@ button, input, select, textarea { font: inherit; }
   padding: 12px 0;
 }
 
-.brand {
+/* Brand + logo top-left */
+.brand{
   display: flex;
   align-items: center;
   gap: 10px;
   min-width: 260px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
 }
 
-.brand-logo {
+.brand small{
+  display: block;
+  font-weight: 650;
+  letter-spacing: 0;
+  color: var(--faint);
+  margin-top: 2px;
+}
+
+/* IMPORTANT: logo is hold-to-toggle target */
+.logo{
   width: 34px;
   height: 34px;
   border-radius: 12px;
@@ -104,34 +126,17 @@ button, input, select, textarea { font: inherit; }
   user-select: none;
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.brand-title {
-  font-weight: 900;
-  letter-spacing: 0.2px;
-  line-height: 1.1;
-}
-
-.brand-sub {
-  font-size: 0.86rem;
-  color: var(--faint);
-  font-weight: 600;
-  line-height: 1.1;
-}
-
-.nav-links {
+/* Nav buttons closer together */
+.nav{
   display: flex;
   align-items: center;
-  gap: 6px;          /* closer together */
+  gap: 6px; /* tighter */
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.pill {
+/* Pill style */
+.pill{
   display: inline-flex;
   align-items: center;
   padding: 9px 12px;
@@ -144,19 +149,23 @@ button, input, select, textarea { font: inherit; }
   transition: transform .12s ease, background .12s ease, border-color .12s ease;
 }
 
-.pill:hover {
+.pill:hover{
   transform: translateY(-1px);
   background: rgba(255,255,255,0.075);
   border-color: rgba(255,255,255,0.18);
 }
 
-.pill.is-active {
+.pill.is-active{
   background: linear-gradient(135deg, rgba(124,92,255,0.22), rgba(76,217,100,0.12));
   border-color: rgba(124,92,255,0.40);
   box-shadow: 0 14px 30px rgba(124,92,255,0.12);
 }
 
-.hero {
+/* Hide any old right-tools if they still exist */
+.right-tools{ display:none !important; }
+
+/* ---------- Hero ---------- */
+.hero{
   margin-top: 20px;
   padding: 28px 26px;
   border-radius: var(--r-lg);
@@ -165,14 +174,14 @@ button, input, select, textarea { font: inherit; }
   box-shadow: var(--shadow);
 }
 
-.hero h1 {
+.hero h1{
   margin: 0 0 12px;
-  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  font-size: clamp(1.8rem, 3.0vw, 2.6rem);
   letter-spacing: -0.5px;
   line-height: 1.15;
 }
 
-.hero p {
+.hero p{
   margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
@@ -180,21 +189,9 @@ button, input, select, textarea { font: inherit; }
   line-height: 1.6;
 }
 
-.h2 {
-  margin: 24px 0 14px;
-  font-size: 1.05rem;
-  font-weight: 900;
-  letter-spacing: 0.2px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
-}
-
-.card {
-  grid-column: span 6;
+/* ---------- Panels (your week pages use .panel) ---------- */
+.panel{
+  margin-top: 18px;
   padding: 18px;
   border-radius: var(--r-lg);
   border: 1px solid var(--border);
@@ -202,33 +199,46 @@ button, input, select, textarea { font: inherit; }
   box-shadow: var(--shadow-soft);
 }
 
-.card h3 {
-  margin: 0 0 8px;
-  font-size: 1.18rem;
-  font-weight: 900;
-  line-height: 1.25;
+.panel h2{
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 950;
+  letter-spacing: 0.1px;
 }
 
-.card p {
-  margin: 0 0 14px;
+/* Question card style (applies to items you append into #qwrap) */
+.q{
+  padding: 14px;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  margin-bottom: 12px;
+}
+
+.q .prompt{
+  margin: 0 0 10px;
+  font-weight: 800;
+  color: rgba(234,240,255,0.95);
+  line-height: 1.45;
+}
+
+.q .sub{
+  margin: 0 0 12px;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
-.card-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+/* Dropdowns should not span full width by default */
+select{
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: rgba(234,240,255,0.92);
+  padding: 10px 12px;
 }
 
-.card.full { grid-column: span 12; }
-
-@media (max-width: 860px){
-  .card { grid-column: span 12; }
-  .brand { min-width: unset; }
-}
-
-.btn {
+/* Buttons */
+.btn{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -244,64 +254,38 @@ button, input, select, textarea { font: inherit; }
   user-select: none;
 }
 
-.btn:hover {
+.btn:hover{
   transform: translateY(-1px);
   background: rgba(255,255,255,0.085);
   border-color: rgba(255,255,255,0.18);
 }
 
-.btn:focus-visible { outline: none; box-shadow: var(--ring); }
+.btn:focus-visible{ outline: none; box-shadow: var(--ring); }
 
-.btn.primary {
+.btn.primary{
   background: linear-gradient(135deg, rgba(124,92,255,0.26), rgba(76,217,100,0.12));
   border-color: rgba(124,92,255,0.46);
 }
 
-.btn.primary:hover {
-  background: linear-gradient(135deg, rgba(124,92,255,0.32), rgba(76,217,100,0.16));
-  border-color: rgba(124,92,255,0.54);
-}
+/* Teacher-only visibility (no UI, just class-based) */
+.hidden{ display:none !important; }
 
-.btn.small { padding: 8px 12px; border-radius: 12px; font-weight: 850; }
-
-.wrap {
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.045));
-  box-shadow: var(--shadow-soft);
-}
-
-.divider {
-  height: 1px;
-  background: rgba(255,255,255,0.10);
-  margin: 14px 0;
-}
-
-.footer {
-  padding: 24px 0 38px;
-  color: rgba(234,240,255,0.55);
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Story: inline blanks */
-.story-text {
+/* Story inline blanks */
+.story-text{
   font-size: 1.06rem;
   line-height: 2.0;
   color: rgba(234,240,255,0.94);
 }
 
-.story-text select { width: auto !important; max-width: 100%; }
+.story-text select{ width:auto !important; max-width:100%; }
 
-.blank {
+.blank{
   display: inline-block;
   vertical-align: baseline;
   margin: 0 4px;
 }
 
-.blank-select {
+.blank-select{
   display: inline-block;
   width: auto;
   min-width: 135px;
@@ -314,16 +298,20 @@ button, input, select, textarea { font: inherit; }
   font-weight: 850;
 }
 
-.blank-select:focus-visible {
-  outline: none;
-  box-shadow: none;
-  border-bottom-color: rgba(124,92,255,0.75);
+.blank-select.is-correct{ border-bottom-color: rgba(76,217,100,0.85); }
+.blank-select.is-wrong{ border-bottom-color: rgba(255,77,109,0.85); }
+
+.footer{
+  padding: 24px 0 38px;
+  color: rgba(234,240,255,0.55);
+  font-size: 0.9rem;
+  text-align: center;
 }
 
-.blank-select.is-correct { border-bottom-color: rgba(76,217,100,0.85); }
-.blank-select.is-wrong   { border-bottom-color: rgba(255,77,109,0.85); }
+@media (max-width: 900px){
+  .brand{ min-width: unset; }
+}
 
-.hidden { display: none !important; }
 
 
 
