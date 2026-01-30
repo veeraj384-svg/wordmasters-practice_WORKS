@@ -6,7 +6,7 @@
   <title>WordMasters Practice</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body>
+<body data-page="home">
   <div class="bg-glow"></div>
 
   <div class="topbar">
@@ -35,42 +35,55 @@
     <div class="hero">
       <h1>Practice smarter. Learn faster.</h1>
       <p>
-        Weekly sets, mixed review, a dropdown story challenge, and quick games — built for
-        WordMasters-style vocabulary in context.
+        Weekly sets, mixed review, a dropdown story challenge, and fast drills —
+        built for WordMasters-style vocabulary in context.
       </p>
     </div>
 
     <div class="panel">
-      <h2>Start Here</h2>
+      <h2>Start Practice</h2>
+
       <div class="q">
-        <div class="prompt">Weekly Sets</div>
-        <div class="sub">Clean practice with tricky choices — like a competition.</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="qhead">
+          <div class="qnum">Weekly Sets</div>
+          <div class="small-note">Competition-style context questions</div>
+        </div>
+        <div class="prompt">Train accuracy with tricky choices.</div>
+        <div class="row">
           <a class="btn primary" href="week1.html">Open Week 1</a>
           <a class="btn primary" href="week2.html">Open Week 2</a>
         </div>
       </div>
 
       <div class="q">
-        <div class="prompt">Mixed Review</div>
-        <div class="sub">Combine weeks for retrieval practice and faster mastery.</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="qhead">
+          <div class="qnum">Mixed Review</div>
+          <div class="small-note">Better retention across weeks</div>
+        </div>
+        <div class="prompt">Combine sets for stronger recall.</div>
+        <div class="row">
           <a class="btn primary" href="mixed_review.html">Open Mixed Review</a>
         </div>
       </div>
 
       <div class="q">
-        <div class="prompt">Dropdown Story Challenge</div>
-        <div class="sub">Fill in a story using the best vocabulary words in context.</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="qhead">
+          <div class="qnum">Dropdown Story</div>
+          <div class="small-note">Vocabulary in context</div>
+        </div>
+        <div class="prompt">Fill a story with the best words.</div>
+        <div class="row">
           <a class="btn primary" href="vocab_dropdown_story.html">Open Story</a>
         </div>
       </div>
 
       <div class="q">
-        <div class="prompt">Games</div>
-        <div class="sub">Fast drills to sharpen vocabulary under time pressure.</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="qhead">
+          <div class="qnum">Games</div>
+          <div class="small-note">Speed + accuracy drills</div>
+        </div>
+        <div class="prompt">Short practice when time is tight.</div>
+        <div class="row">
           <a class="btn primary" href="games.html">Go to Games</a>
         </div>
       </div>
@@ -82,5 +95,6 @@
   <script src="assets/app.js"></script>
 </body>
 </html>
+
 
 
