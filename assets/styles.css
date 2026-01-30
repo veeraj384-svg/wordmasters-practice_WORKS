@@ -1,10 +1,9 @@
 /* =========================================================
-   WordMasters Practice — Full Stylesheet (Rewrite)
-   Dark / Glass Theme, consistent across all pages
-   Includes: nav, cards, buttons, quiz UI, story blanks
+   WordMasters Practice — Professional Dark / Glass Theme
+   Purplish + Green vibe, tighter nav spacing, pro typography
    ========================================================= */
 
-/* ---------- CSS Reset (light) ---------- */
+/* ---------- Reset ---------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -16,7 +15,7 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   color: #eaf0ff;
   background: #070915;
-  line-height: 1.45;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -25,81 +24,64 @@ img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; }
 
-/* ---------- Theme Tokens ---------- */
+/* ---------- Tokens ---------- */
 :root{
-  /* Backgrounds */
   --bg0: #050714;
   --bg1: #07091a;
-  --bg2: #0b1026;
 
-  /* Glass panels */
   --panel: rgba(255,255,255,0.07);
   --panel2: rgba(255,255,255,0.05);
   --border: rgba(255,255,255,0.12);
   --border2: rgba(255,255,255,0.09);
 
-  /* Text */
   --text: #eaf0ff;
-  --muted: rgba(234,240,255,0.75);
-  --faint: rgba(234,240,255,0.55);
+  --muted: rgba(234,240,255,0.76);
+  --faint: rgba(234,240,255,0.58);
 
-  /* Accents (match your screenshot vibe) */
   --purple: #7c5cff;
   --purple2: #b69cff;
   --green: #4cd964;
-  --amber: #f5c04a;
-  --red: #ff4d6d;
 
-  /* Radii / Shadows */
   --r-lg: 22px;
   --r-md: 16px;
   --r-sm: 12px;
+
   --shadow: 0 18px 55px rgba(0,0,0,0.55);
   --shadow-soft: 0 10px 28px rgba(0,0,0,0.38);
 
-  /* Layout */
   --max: 1120px;
   --pad: 18px;
 
-  /* Focus ring */
-  --ring: 0 0 0 4px rgba(124,92,255,0.25);
+  --ring: 0 0 0 4px rgba(124,92,255,0.26);
 }
 
-/* ---------- Background Glow Layer ---------- */
+/* ---------- Background Glow ---------- */
 .bg-glow {
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(900px 500px at 20% 10%, rgba(124,92,255,0.25), transparent 55%),
-    radial-gradient(900px 500px at 80% 25%, rgba(76,217,100,0.16), transparent 55%),
-    radial-gradient(900px 700px at 70% 85%, rgba(245,192,74,0.14), transparent 55%),
-    radial-gradient(700px 500px at 25% 85%, rgba(255,77,109,0.12), transparent 60%),
+    radial-gradient(900px 500px at 18% 10%, rgba(124,92,255,0.27), transparent 56%),
+    radial-gradient(900px 500px at 82% 24%, rgba(76,217,100,0.17), transparent 56%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
-  filter: saturate(115%);
-  opacity: 1;
+  filter: saturate(118%);
 }
 
-/* If you don't have .bg-glow in HTML, it's okay.
-   Optional: add <div class="bg-glow"></div> as first body child. */
-
-/* ---------- Containers ---------- */
+/* ---------- Layout ---------- */
 .container {
   width: min(var(--max), calc(100% - (var(--pad) * 2)));
   margin: 0 auto;
 }
 
-.section {
-  margin: 18px 0 26px;
-}
+.section { margin: 18px 0 26px; }
 
-/* ---------- Top Bar / Navbar ---------- */
+/* ---------- Topbar / Nav ---------- */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(14px);
-  background: linear-gradient(180deg, rgba(12,15,35,0.86), rgba(12,15,35,0.55));
+  backdrop-filter: blur(16px);
+  background: linear-gradient(180deg, rgba(12,15,35,0.88), rgba(12,15,35,0.52));
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -107,59 +89,69 @@ button, input, select, textarea { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 14px 0;
+  gap: 10px;
+  padding: 12px 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-width: 220px;
+  gap: 10px;
+  min-width: 240px;
 }
 
-.brand-badge {
+/* Logo top-left + clickable/holdable */
+.brand-logo {
   width: 34px;
   height: 34px;
   border-radius: 12px;
   background:
     radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55), transparent 35%),
-    linear-gradient(135deg, rgba(124,92,255,0.9), rgba(76,217,100,0.25));
-  box-shadow: 0 10px 28px rgba(124,92,255,0.15);
+    linear-gradient(135deg, rgba(124,92,255,0.92), rgba(76,217,100,0.28));
+  box-shadow: 0 12px 28px rgba(124,92,255,0.14);
   border: 1px solid rgba(255,255,255,0.16);
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .brand-title {
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.2px;
+  line-height: 1.1;
 }
 
 .brand-sub {
-  display: block;
-  margin-top: 2px;
   font-size: 0.86rem;
   color: var(--faint);
-  font-weight: 550;
+  font-weight: 600;
+  line-height: 1.1;
 }
 
+/* Buttons closer together */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;              /* <-- tighter spacing */
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
+/* Nav pill style (purple + green vibe) */
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
+  padding: 9px 12px;     /* slightly tighter */
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.11);
   background: rgba(255,255,255,0.05);
-  color: rgba(234,240,255,0.86);
-  font-weight: 700;
+  color: rgba(234,240,255,0.88);
+  font-weight: 800;
   letter-spacing: 0.15px;
   transition: transform .12s ease, background .12s ease, border-color .12s ease;
 }
@@ -167,46 +159,46 @@ button, input, select, textarea { font: inherit; }
 .pill:hover {
   transform: translateY(-1px);
   background: rgba(255,255,255,0.075);
-  border-color: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.18);
 }
 
 .pill.is-active {
-  background: rgba(124,92,255,0.18);
-  border-color: rgba(124,92,255,0.38);
-  box-shadow: 0 12px 28px rgba(124,92,255,0.12);
+  background:
+    linear-gradient(135deg, rgba(124,92,255,0.22), rgba(76,217,100,0.12));
+  border-color: rgba(124,92,255,0.40);
+  box-shadow: 0 14px 30px rgba(124,92,255,0.12);
 }
 
 /* ---------- Hero ---------- */
 .hero {
-  margin-top: 22px;
+  margin-top: 20px;
   padding: 28px 26px;
   border-radius: var(--r-lg);
   border: 1px solid rgba(255,255,255,0.10);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
 }
 
 .hero h1 {
-  margin: 0 0 10px;
-  font-size: clamp(1.9rem, 3.6vw, 3rem);
-  letter-spacing: -0.4px;
+  margin: 0 0 12px;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  letter-spacing: -0.5px;
+  line-height: 1.15;     /* professional spacing */
 }
 
 .hero p {
   margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
-  max-width: 70ch;
+  max-width: 72ch;
+  line-height: 1.6;
 }
 
-/* ---------- Section Headings ---------- */
+/* ---------- Section Heading ---------- */
 .h2 {
   margin: 24px 0 14px;
   font-size: 1.05rem;
-  color: rgba(234,240,255,0.92);
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.2px;
 }
 
@@ -224,18 +216,19 @@ button, input, select, textarea { font: inherit; }
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.045));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(14px);
 }
 
 .card h3 {
   margin: 0 0 8px;
-  font-size: 1.15rem;
-  font-weight: 850;
+  font-size: 1.18rem;
+  font-weight: 900;
+  line-height: 1.25;
 }
 
 .card p {
   margin: 0 0 14px;
   color: var(--muted);
+  line-height: 1.65;
 }
 
 .card-actions {
@@ -244,7 +237,6 @@ button, input, select, textarea { font: inherit; }
   flex-wrap: wrap;
 }
 
-/* Full-width card if needed */
 .card.full { grid-column: span 12; }
 
 @media (max-width: 860px){
@@ -262,7 +254,7 @@ button, input, select, textarea { font: inherit; }
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.06);
   color: rgba(234,240,255,0.92);
-  font-weight: 800;
+  font-weight: 900;
   cursor: pointer;
   transition: transform .12s ease, background .12s ease, border-color .12s ease;
   user-select: none;
@@ -277,35 +269,19 @@ button, input, select, textarea { font: inherit; }
 .btn:focus-visible { outline: none; box-shadow: var(--ring); }
 
 .btn.primary {
-  background: rgba(124,92,255,0.22);
-  border-color: rgba(124,92,255,0.42);
+  background: linear-gradient(135deg, rgba(124,92,255,0.26), rgba(76,217,100,0.12));
+  border-color: rgba(124,92,255,0.46);
 }
 
 .btn.primary:hover {
-  background: rgba(124,92,255,0.28);
-  border-color: rgba(124,92,255,0.50);
+  background: linear-gradient(135deg, rgba(124,92,255,0.32), rgba(76,217,100,0.16));
+  border-color: rgba(124,92,255,0.54);
 }
 
-.btn.success {
-  background: rgba(76,217,100,0.16);
-  border-color: rgba(76,217,100,0.34);
-}
-
-.btn.amber {
-  background: rgba(245,192,74,0.14);
-  border-color: rgba(245,192,74,0.32);
-}
-
-.btn.ghost {
-  background: transparent;
-}
-
-.btn.small { padding: 8px 12px; border-radius: 12px; font-weight: 750; }
+.btn.small { padding: 8px 12px; border-radius: 12px; font-weight: 850; }
 
 /* ---------- Form Controls ---------- */
-.input,
-select,
-textarea {
+.input, select, textarea {
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.05);
@@ -325,118 +301,30 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
   margin: 14px 0;
 }
 
-/* ---------- Quiz / Week Pages ---------- */
-.quiz-wrap {
-  padding: 18px;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.045));
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(14px);
-}
-
-.quiz-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.quiz-title {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 900;
-}
-
-.quiz-sub {
-  margin: 6px 0 0;
-  color: var(--muted);
-  max-width: 70ch;
-}
-
-.q {
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: var(--r-md);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
-}
-
-.q .prompt {
-  margin: 0 0 10px;
-  font-weight: 750;
-  color: rgba(234,240,255,0.95);
-}
-
-.choices {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.choice {
-  padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
-  cursor: pointer;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
-}
-
-.choice:hover {
-  transform: translateY(-1px);
-  background: rgba(255,255,255,0.075);
-  border-color: rgba(255,255,255,0.16);
-}
-
-.choice.is-correct {
-  border-color: rgba(76,217,100,0.55);
-  background: rgba(76,217,100,0.12);
-}
-
-.choice.is-wrong {
-  border-color: rgba(255,77,109,0.55);
-  background: rgba(255,77,109,0.10);
-}
-
-.note {
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-/* ---------- Story Page (Dropdown Story Challenge) ---------- */
+/* ---------- Story Page: inline blanks ---------- */
 .story-wrap {
   padding: 18px;
   border-radius: var(--r-lg);
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.045));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(14px);
 }
 
 .story-text {
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   line-height: 2.0;
   color: rgba(234,240,255,0.94);
 }
 
-/* IMPORTANT: dropdown blanks should NOT become full width */
-.story-text select {
-  width: auto !important;
-  max-width: 100%;
-}
+/* never full width inside story */
+.story-text select { width: auto !important; max-width: 100%; }
 
-/* Inline blank wrapper */
 .blank {
   display: inline-block;
   vertical-align: baseline;
   margin: 0 4px;
 }
 
-/* Dropdown looks like an underline blank */
 .blank-select {
   display: inline-block;
   width: auto;
@@ -446,10 +334,9 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
 
   border: none;
   border-bottom: 2px solid rgba(234,240,255,0.35);
-  border-radius: 0;
   background: transparent;
   color: rgba(234,240,255,0.92);
-  font-weight: 750;
+  font-weight: 850;
 }
 
 .blank-select:focus-visible {
@@ -458,13 +345,8 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
   border-bottom-color: rgba(124,92,255,0.75);
 }
 
-.blank-select.is-correct {
-  border-bottom-color: rgba(76,217,100,0.85);
-}
-
-.blank-select.is-wrong {
-  border-bottom-color: rgba(255,77,109,0.85);
-}
+.blank-select.is-correct { border-bottom-color: rgba(76,217,100,0.85); }
+.blank-select.is-wrong   { border-bottom-color: rgba(255,77,109,0.85); }
 
 .story-actions {
   display: flex;
@@ -475,12 +357,13 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
 
 .score-line {
   margin-top: 14px;
-  font-weight: 850;
+  font-weight: 950;
 }
 
 .feedback {
   margin-top: 10px;
   color: var(--muted);
+  line-height: 1.65;
 }
 
 .explain {
@@ -492,11 +375,11 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
 }
 
 .explain .label {
-  font-weight: 900;
+  font-weight: 950;
   color: rgba(234,240,255,0.93);
 }
 
-/* ---------- Footer / Small print ---------- */
+/* ---------- Footer ---------- */
 .footer {
   padding: 24px 0 38px;
   color: rgba(234,240,255,0.55);
@@ -504,9 +387,9 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
   text-align: center;
 }
 
-/* ---------- Utility ---------- */
+/* ---------- Utilities ---------- */
 .hidden { display: none !important; }
 .muted { color: var(--muted); }
 .center { text-align: center; }
-.spacer { height: 12px; }
+
 
