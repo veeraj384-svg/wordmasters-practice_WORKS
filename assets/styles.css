@@ -1,9 +1,8 @@
 /* =========================================================
    WordMasters Practice — Professional Dark / Glass Theme
-   Purplish + Green vibe, tighter nav spacing, pro typography
+   Purplish + Green vibe, tight nav spacing, pro typography
    ========================================================= */
 
-/* ---------- Reset ---------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -24,7 +23,6 @@ img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; }
 
-/* ---------- Tokens ---------- */
 :root{
   --bg0: #050714;
   --bg1: #07091a;
@@ -32,14 +30,12 @@ button, input, select, textarea { font: inherit; }
   --panel: rgba(255,255,255,0.07);
   --panel2: rgba(255,255,255,0.05);
   --border: rgba(255,255,255,0.12);
-  --border2: rgba(255,255,255,0.09);
 
   --text: #eaf0ff;
   --muted: rgba(234,240,255,0.76);
   --faint: rgba(234,240,255,0.58);
 
   --purple: #7c5cff;
-  --purple2: #b69cff;
   --green: #4cd964;
 
   --r-lg: 22px;
@@ -55,27 +51,22 @@ button, input, select, textarea { font: inherit; }
   --ring: 0 0 0 4px rgba(124,92,255,0.26);
 }
 
-/* ---------- Background Glow ---------- */
 .bg-glow {
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(900px 500px at 18% 10%, rgba(124,92,255,0.27), transparent 56%),
-    radial-gradient(900px 500px at 82% 24%, rgba(76,217,100,0.17), transparent 56%),
+    radial-gradient(900px 520px at 18% 10%, rgba(124,92,255,0.27), transparent 56%),
+    radial-gradient(900px 520px at 82% 24%, rgba(76,217,100,0.17), transparent 56%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
   filter: saturate(118%);
 }
 
-/* ---------- Layout ---------- */
 .container {
   width: min(var(--max), calc(100% - (var(--pad) * 2)));
   margin: 0 auto;
 }
 
-.section { margin: 18px 0 26px; }
-
-/* ---------- Topbar / Nav ---------- */
 .topbar {
   position: sticky;
   top: 0;
@@ -97,10 +88,9 @@ button, input, select, textarea { font: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
-  min-width: 240px;
+  min-width: 260px;
 }
 
-/* Logo top-left + clickable/holdable */
 .brand-logo {
   width: 34px;
   height: 34px;
@@ -133,20 +123,18 @@ button, input, select, textarea { font: inherit; }
   line-height: 1.1;
 }
 
-/* Buttons closer together */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 6px;              /* <-- tighter spacing */
+  gap: 6px;          /* closer together */
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-/* Nav pill style (purple + green vibe) */
 .pill {
   display: inline-flex;
   align-items: center;
-  padding: 9px 12px;     /* slightly tighter */
+  padding: 9px 12px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.11);
   background: rgba(255,255,255,0.05);
@@ -163,13 +151,11 @@ button, input, select, textarea { font: inherit; }
 }
 
 .pill.is-active {
-  background:
-    linear-gradient(135deg, rgba(124,92,255,0.22), rgba(76,217,100,0.12));
+  background: linear-gradient(135deg, rgba(124,92,255,0.22), rgba(76,217,100,0.12));
   border-color: rgba(124,92,255,0.40);
   box-shadow: 0 14px 30px rgba(124,92,255,0.12);
 }
 
-/* ---------- Hero ---------- */
 .hero {
   margin-top: 20px;
   padding: 28px 26px;
@@ -183,7 +169,7 @@ button, input, select, textarea { font: inherit; }
   margin: 0 0 12px;
   font-size: clamp(1.9rem, 3.4vw, 3rem);
   letter-spacing: -0.5px;
-  line-height: 1.15;     /* professional spacing */
+  line-height: 1.15;
 }
 
 .hero p {
@@ -194,7 +180,6 @@ button, input, select, textarea { font: inherit; }
   line-height: 1.6;
 }
 
-/* ---------- Section Heading ---------- */
 .h2 {
   margin: 24px 0 14px;
   font-size: 1.05rem;
@@ -202,7 +187,6 @@ button, input, select, textarea { font: inherit; }
   letter-spacing: 0.2px;
 }
 
-/* ---------- Grid Cards ---------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -241,9 +225,9 @@ button, input, select, textarea { font: inherit; }
 
 @media (max-width: 860px){
   .card { grid-column: span 12; }
+  .brand { min-width: unset; }
 }
 
-/* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -280,29 +264,8 @@ button, input, select, textarea { font: inherit; }
 
 .btn.small { padding: 8px 12px; border-radius: 12px; font-weight: 850; }
 
-/* ---------- Form Controls ---------- */
-.input, select, textarea {
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
-  color: rgba(234,240,255,0.92);
-  padding: 10px 12px;
-}
-
-select { cursor: pointer; }
-select:focus-visible,
-.input:focus-visible,
-textarea:focus-visible { outline: none; box-shadow: var(--ring); }
-
-/* ---------- Divider ---------- */
-.divider {
-  height: 1px;
-  background: rgba(255,255,255,0.10);
-  margin: 14px 0;
-}
-
-/* ---------- Story Page: inline blanks ---------- */
-.story-wrap {
+.wrap {
+  margin-top: 18px;
   padding: 18px;
   border-radius: var(--r-lg);
   border: 1px solid var(--border);
@@ -310,13 +273,26 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
   box-shadow: var(--shadow-soft);
 }
 
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.10);
+  margin: 14px 0;
+}
+
+.footer {
+  padding: 24px 0 38px;
+  color: rgba(234,240,255,0.55);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Story: inline blanks */
 .story-text {
   font-size: 1.06rem;
   line-height: 2.0;
   color: rgba(234,240,255,0.94);
 }
 
-/* never full width inside story */
 .story-text select { width: auto !important; max-width: 100%; }
 
 .blank {
@@ -331,7 +307,6 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
   min-width: 135px;
   max-width: 240px;
   padding: 2px 6px;
-
   border: none;
   border-bottom: 2px solid rgba(234,240,255,0.35);
   background: transparent;
@@ -348,48 +323,7 @@ textarea:focus-visible { outline: none; box-shadow: var(--ring); }
 .blank-select.is-correct { border-bottom-color: rgba(76,217,100,0.85); }
 .blank-select.is-wrong   { border-bottom-color: rgba(255,77,109,0.85); }
 
-.story-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.score-line {
-  margin-top: 14px;
-  font-weight: 950;
-}
-
-.feedback {
-  margin-top: 10px;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.explain {
-  margin-top: 10px;
-  padding: 12px 14px;
-  border-radius: var(--r-md);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
-}
-
-.explain .label {
-  font-weight: 950;
-  color: rgba(234,240,255,0.93);
-}
-
-/* ---------- Footer ---------- */
-.footer {
-  padding: 24px 0 38px;
-  color: rgba(234,240,255,0.55);
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* ---------- Utilities ---------- */
 .hidden { display: none !important; }
-.muted { color: var(--muted); }
-.center { text-align: center; }
+
 
 
