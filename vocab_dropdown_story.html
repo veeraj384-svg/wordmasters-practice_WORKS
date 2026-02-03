@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Story • WordMasters Practice</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/styles.css?v=601" />
 </head>
-<body data-page="story">
+<body>
   <div class="bg-glow"></div>
 
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div id="siteLogo" class="logo" aria-label="Site logo"></div>
+        <div class="logo"></div>
         <div>WordMasters Practice <small>Story</small></div>
       </div>
 
@@ -31,29 +31,89 @@
   <div class="container">
     <div class="hero">
       <h1>Dropdown Story Challenge</h1>
-      <p>Fill in the blanks with the best vocabulary words in context.</p>
+      <p>Fill the blanks using your word list. Then check answers in the “Show answers” section.</p>
     </div>
 
     <div class="panel">
-      <div class="actions">
-        <div class="actions-left">
-          <button class="btn primary" id="checkBtn">Check</button>
-          <button class="btn ghost" id="resetBtn">Reset</button>
-        </div>
-        <div id="scoreLine" class="small-note"></div>
+      <h2 style="margin:0 0 10px;">A Team Project</h2>
+
+      <div class="story-text">
+        The group tried to
+        <span class="blank">
+          <select class="blank-select">
+            <option value="">—</option>
+            <option>establish</option>
+            <option>evade</option>
+            <option>snicker</option>
+            <option>derelict</option>
+          </select>
+        </span>
+        a routine for practice, but one student would always
+        <span class="blank">
+          <select class="blank-select">
+            <option value="">—</option>
+            <option>shirk</option>
+            <option>rigorous</option>
+            <option>amicable</option>
+            <option>mundane</option>
+          </select>
+        </span>
+        the hardest tasks. Another member would
+        <span class="blank">
+          <select class="blank-select">
+            <option value="">—</option>
+            <option>domineer</option>
+            <option>enact</option>
+            <option>evade</option>
+            <option>bicker</option>
+          </select>
+        </span>
+        every decision, which caused the others to
+        <span class="blank">
+          <select class="blank-select">
+            <option value="">—</option>
+            <option>bicker</option>
+            <option>peaked</option>
+            <option>refuse</option>
+            <option>stamina</option>
+          </select>
+        </span>.
+        Still, the team showed real
+        <span class="blank">
+          <select class="blank-select">
+            <option value="">—</option>
+            <option>mettle</option>
+            <option>etiquette</option>
+            <option>threshold</option>
+            <option>refuse</option>
+          </select>
+        </span>
+        by staying focused until their energy nearly
+        <span class="blank">
+          <select class="blank-select">
+            <option value="">—</option>
+            <option>peaked</option>
+            <option>sneer</option>
+            <option>wrangle</option>
+            <option>derelict</option>
+          </select>
+        </span>.
       </div>
 
       <div class="divider"></div>
 
-      <h2 id="storyTitle" style="margin:0 0 10px;">Story</h2>
-      <div id="storyText" class="story-text"></div>
+      <details class="explain">
+        <summary class="label">Show answers</summary>
+        <div><strong>1:</strong> establish</div>
+        <div><strong>2:</strong> shirk</div>
+        <div><strong>3:</strong> domineer</div>
+        <div><strong>4:</strong> bicker</div>
+        <div><strong>5:</strong> mettle</div>
+        <div><strong>6:</strong> peaked</div>
+      </details>
     </div>
 
     <div class="footer">© WordMasters Practice</div>
   </div>
-
-  <script src="assets/app.js"></script>
 </body>
 </html>
-
-
